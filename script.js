@@ -1,61 +1,149 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('bookingForm');
+// =====================================
+// МОБИЛЬНОЕ МЕНЮ
+// =====================================
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
+const menuButton = document.querySelector('.menu-button');
+const nav = document.querySelector('#nav');
 
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const tariffSelect = document.getElementById('tariff');
-        const tariff = tariffSelect.options[tariffSelect.selectedIndex].text;
+if (menuButton && nav) {
+    menuButton.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
 
-        // Простая валидация
-        if (name.length < 2) {
-            alert('Пожалуйста, введите ваше имя.');
-            return;
-        }
-        if (phone.length < 6) {
-            alert('Пожалуйста, введите корректный номер телефона.');
-            return;
-        }
-
-        // Имитация отправки данных
-        const button = form.querySelector('button[type="submit"]');
-        const originalText = button.innerText;
-
-        button.innerText = 'Отправка...';
-        button.disabled = true;
-
-        setTimeout(() => {
-            alert(
-                `Спасибо, ${name}!\n` +
-                `Ваша заявка на тариф "${tariff}" принята.\n` +
-                `Мы позвоним вам на номер ${phone} в ближайшее время.`
-            );
-            button.innerText = originalText;
-            button.disabled = false;
-            form.reset();
-        }, 1200);
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.textContent = open ? '×' : '☰';
     });
 
-    // Плавное появление секций при прокрутке
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        },
-        { threshold: 0.1 }
-    );
+    // Закрываем меню после перехода
+    nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
 
-    sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(40px)';
-        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(section);
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.textContent = '☰';
+        });
+    });
+}
+
+
+// =====================================
+// МИНИМАЛЬНАЯ ДАТА ДЛЯ БРОНИРОВАНИЯ
+// =====================================
+
+const dateInputs = document.querySelectorAll('input[type="date"]');
+
+const now = new Date();
+
+const today = new Date(
+    now.getTime() - now.getTimezoneOffset() * 60000
+)
+    .toISOString()
+    .slice(0, 10);
+
+// Запрещаем выбирать даты в прошлом
+dateInputs.forEach((input) => {
+    input.min = today;
+});
+
+
+// =====================================
+// ПОЛУЧЕНИЕ ЭЛЕМЕНТОВ БРОНИРОВАНИЯ
+// =====================================
+
+const tripDate = document.querySelector('#tripDate');
+const tourChoice = document.querySelector('#tourChoice');
+const peopleSelect = document.querySelector('#people');
+
+const applicationForm = document.querySelector('#applicationForm');
+
+
+// =====================================
+// ОБРАБОТКА ФОРМЫ ЗАЯВКИ
+// =====================================
+
+if (applicationForm) {
+    applicationForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const data = new FormData(applicationForm);
+
+        const name = (data.get('name') || '').trim();
+
+        const message = document.querySelector('#formMessage');
+
+        // Сообщение об успешном заполнении
+        if (message) {
+            message.textContent =
+                `Спасибо${name ? ', ' + name : ''}! ` +
+                `Заявка заполнена. Это демо-форма: ` +
+                `данные не отправляются на сервер.`;
+        }
+
+        // Очищаем форму
+        applicationForm.reset();
+    });
+}
+
+
+// =====================================
+// ПЕРЕНОС ДАННЫХ ИЗ ПАНЕЛИ БРОНИРОВАНИЯ
+// =====================================
+
+const bookingButton = document.querySelector('.book-button');
+
+if (bookingButton) {
+    bookingButton.addEventListener('click', () => {
+
+        // Получаем поле даты в форме
+        const dateField = document.querySelector('input[name="date"]');
+
+        // Получаем поле комментария
+        const commentField = document.querySelector(
+            'textarea[name="comment"]'
+        );
+
+        // Передаём выбранную дату в заявку
+        if (dateField && tripDate && tripDate.value) {
+            dateField.value = tripDate.value;
+        }
+
+        // Передаём выбранный тур и число туристов
+        if (commentField && tourChoice && peopleSelect) {
+            commentField.value =
+                `Тур: ${tourChoice.value}. ` +
+                `Количество туристов: ${peopleSelect.value}.`;
+        }
+    });
+}
+
+
+// =====================================
+// ПЛАВНАЯ ПРОКРУТКА К РАЗДЕЛАМ
+// =====================================
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+
+        const targetId = link.getAttribute('href');
+
+        // Игнорируем пустые ссылки
+        if (!targetId || targetId === '#') {
+            return;
+        }
+
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            event.preventDefault();
+
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });
+
+
+// =====================================
+// КОНЕЦ SCRIPT.JS
+// =====================================
