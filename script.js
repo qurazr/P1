@@ -1,69 +1,149 @@
-// ===============================
+// =====================================
 // МОБИЛЬНОЕ МЕНЮ
-// ===============================
+// =====================================
 
-const menuToggle = document.querySelector('.menu-toggle');
+const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('#nav');
 
-if (menuToggle && nav) {
-  menuToggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
+if (menuButton && nav) {
+    menuButton.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
 
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.textContent = isOpen ? '✕' : '☰';
-  });
-
-  // Закрываем меню после перехода по ссылке
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.textContent = '☰';
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.textContent = open ? '×' : '☰';
     });
-  });
+
+    // Закрываем меню после перехода
+    nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
+
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuButton.textContent = '☰';
+        });
+    });
 }
 
 
-// ===============================
-// ОБРАБОТКА ФОРМЫ ЗАЯВКИ
-// ===============================
+// =====================================
+// МИНИМАЛЬНАЯ ДАТА ДЛЯ БРОНИРОВАНИЯ
+// =====================================
 
-// Форма пока работает в демонстрационном режиме
-// Данные не отправляются на сервер
+const dateInputs = document.querySelectorAll('input[type="date"]');
 
-const applicationForm = document.querySelector('#applicationForm');
-const formMessage = document.querySelector('#formMessage');
+const now = new Date();
 
-if (applicationForm && formMessage) {
-  applicationForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(applicationForm);
-    const visitorName = (formData.get('name') || '').trim();
-
-    formMessage.textContent = `Спасибо${visitorName ? ', ' + visitorName : ''}! Ваша заявка заполнена. Это демо — данные не отправлены на сервер.`;
-
-    // Очищаем форму после отправки
-    applicationForm.reset();
-  });
-}
-
-
-// ===============================
-// МИНИМАЛЬНАЯ ДАТА В ФОРМЕ
-// ===============================
-
-// Запрещаем выбрать прошедшие даты
-const dateInput = document.querySelector('input[type="date"]');
-
-if (dateInput) {
-  const today = new Date();
-
-  const localToday = new Date(
-    today.getTime() - today.getTimezoneOffset() * 60000
-  )
+const today = new Date(
+    now.getTime() - now.getTimezoneOffset() * 60000
+)
     .toISOString()
     .slice(0, 10);
 
-  dateInput.min = localToday;
-      }
+// Запрещаем выбирать даты в прошлом
+dateInputs.forEach((input) => {
+    input.min = today;
+});
+
+
+// =====================================
+// ПОЛУЧЕНИЕ ЭЛЕМЕНТОВ БРОНИРОВАНИЯ
+// =====================================
+
+const tripDate = document.querySelector('#tripDate');
+const tourChoice = document.querySelector('#tourChoice');
+const peopleSelect = document.querySelector('#people');
+
+const applicationForm = document.querySelector('#applicationForm');
+
+
+// =====================================
+// ОБРАБОТКА ФОРМЫ ЗАЯВКИ
+// =====================================
+
+if (applicationForm) {
+    applicationForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const data = new FormData(applicationForm);
+
+        const name = (data.get('name') || '').trim();
+
+        const message = document.querySelector('#formMessage');
+
+        // Сообщение об успешном заполнении
+        if (message) {
+            message.textContent =
+                `Спасибо${name ? ', ' + name : ''}! ` +
+                `Заявка заполнена. Это демо-форма: ` +
+                `данные не отправляются на сервер.`;
+        }
+
+        // Очищаем форму
+        applicationForm.reset();
+    });
+}
+
+
+// =====================================
+// ПЕРЕНОС ДАННЫХ ИЗ ПАНЕЛИ БРОНИРОВАНИЯ
+// =====================================
+
+const bookingButton = document.querySelector('.book-button');
+
+if (bookingButton) {
+    bookingButton.addEventListener('click', () => {
+
+        // Получаем поле даты в форме
+        const dateField = document.querySelector('input[name="date"]');
+
+        // Получаем поле комментария
+        const commentField = document.querySelector(
+            'textarea[name="comment"]'
+        );
+
+        // Передаём выбранную дату в заявку
+        if (dateField && tripDate && tripDate.value) {
+            dateField.value = tripDate.value;
+        }
+
+        // Передаём выбранный тур и число туристов
+        if (commentField && tourChoice && peopleSelect) {
+            commentField.value =
+                `Тур: ${tourChoice.value}. ` +
+                `Количество туристов: ${peopleSelect.value}.`;
+        }
+    });
+}
+
+
+// =====================================
+// ПЛАВНАЯ ПРОКРУТКА К РАЗДЕЛАМ
+// =====================================
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+
+        const targetId = link.getAttribute('href');
+
+        // Игнорируем пустые ссылки
+        if (!targetId || targetId === '#') {
+            return;
+        }
+
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            event.preventDefault();
+
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+
+// =====================================
+// КОНЕЦ SCRIPT.JS
+// =====================================
