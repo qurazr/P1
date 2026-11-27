@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тур в Краснодар | Южное Сияние</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- Переменные --- */
+        :root {
+            --primary-color: #1a3c2b;
+            --accent-color: #c8a962;
+            --text-color: #333;
+            --bg-light: #f9f7f2;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Сброс --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Навигация --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-cta {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: #b8994d;
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero --- */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(40, 41, 41, 0.6), rgba(42, 43, 42, 0.4)),
+                url('https://i.pinimg.com/736x/fc/63/e7/fc63e70b2dc91f558d5702c50f29d81e.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            margin-bottom: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-content .btn-cta {
+            font-size: 1rem;
+            padding: 15px 40px;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Секции --- */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        .section-desc {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            color: #666;
+        }
+
+        /* --- Направления --- */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dest-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .dest-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .dest-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .dest-card:hover .dest-img img {
+            transform: scale(1.1);
+        }
+
+        .dest-info {
+            padding: 20px;
+        }
+
+        .dest-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .dest-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- Галерея --- */
+        #gallery {
+            background-color: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- Программа --- */
+        #program {
+            background-color: var(--bg-light);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item.left { left: 0; }
+        .timeline-item.right { left: 50%; }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--white);
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            position: relative;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content span {
+            color: var(--accent-color);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* --- Стоимость --- */
+        #price {
+            background: linear-gradient(rgba(26, 60, 43, 0.9), rgba(26, 60, 43, 0.9)),
+                url('https://i.pinimg.com/736x/72/8d/57/728d57594366ef54ac851963afcd245d.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--white);
+        }
+
+        #price .section-title { color: var(--white); }
+        #price .section-desc  { color: #ddd; }
+
+        .price-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 280px;
+            transition: transform 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .price-card.featured {
+            background: rgba(200, 169, 98, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .price-card h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .price-card .btn-cta {
+            display: block;
+            width: 100%;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .price-card .btn-cta:hover {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        /* --- Форма --- */
+        #booking {
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 18px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #112d1f;
+        }
+
+        /* --- Футер --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px 5% 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            text-align: left;
+            gap: 20px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-col p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+
+            .timeline::after { left: 31px; }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item.right { left: 0; }
+            .timeline-item::after { left: 21px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Южное <span>Сияние</span></div>
+        <ul class="nav-links">
+            <li><a href="#destinations">Направления</a></li>
+            <li><a href="#gallery">Фото</a></li>
+            <li><a href="#program">Программа</a></li>
+            <li><a href="#price">Стоимость</a></li>
+            <li><a href="#booking" class="btn-cta">Забронировать</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="hero-content">
+            <h1>Откройте для себя Краснодар</h1>
+            <p>Уникальное путешествие в столицу Кубани. Винные туры, казачья культура, гастрономия и южное гостеприимство ждут вас.</p>
+            <a href="#booking" class="btn-cta">Забронировать тур</a>
+        </div>
+    </header>
+
+    <section id="destinations">
+        <h2 class="section-title">Направления</h2>
+        <p class="section-desc">Мы подготовили для вас самые интересные маршруты по Краснодарскому краю.</p>
+
+        <div class="destinations-grid">
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://i.pinimg.com/736x/0a/97/32/0a9732ea5af64fb79b77f4848c64a88f.jpg" alt="Виноградники">
+                </div>
+                <div class="dest-info">
+                    <h3>Винные долины</h3>
+                    <p>Посетите лучшие винодельни Кубани, продегустируйте авторские вина и узнайте секреты виноделия.</p>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://i.pinimg.com/736x/ea/61/78/ea617855bb0cb84a4726e6abde0f81e8.jpg" alt="Парк Галицкого">
+                </div>
+                <div class="dest-info">
+                    <h3>Парк Галицкого</h3>
+                    <p>Один из лучших парков Европы. Уникальный ландшафтный дизайн, амфитеатр и японский сад.</p>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://i.pinimg.com/736x/29/97/1a/29971adcf9426f57852366cc96d37b48.jpg" alt="Казачья станица">
+                </div>
+                <div class="dest-info">
+                    <h3>Казачья станица</h3>
+                    <p>Погружение в историю и быт кубанского казачества. Традиционная кухня и джигитовка.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">Фотографии</h2>
+        <p class="section-desc">Яркие моменты, которые ждут вас в этом путешествии.</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://i.pinimg.com/1200x/9b/13/df/9b13df9a38c2a491773a75ba63120931.jpg" alt="Краснодар"></div>
+            <div class="gallery-item"><img src="https://i.pinimg.com/736x/0d/7e/7e/0d7e7ec4d645e41609e2c134589f767e.jpg" alt="Вино"></div>
+            <div class="gallery-item"><img src="https://i.pinimg.com/736x/ae/e9/45/aee94567e67e022d37b54b0c09ea500e.jpg" alt="Природа"></div>
+            <div class="gallery-item"><img src="https://i.pinimg.com/736x/38/0b/99/380b99cd5101087f1efd6170dcab7c22.jpg" alt="Ресторан"></div>
+            <div class="gallery-item"><img src="https://i.pinimg.com/736x/97/df/14/97df14458a302279e8b37dfe6689713f.jpg" alt="Архитектура"></div>
+            <div class="gallery-item"><img src="https://i.pinimg.com/736x/f6/28/17/f62817d1c53b859fd2d776f8cdad2424.jpg" alt="Закат"></div>
+        </div>
+    </section>
+
+    <section id="program">
+        <h2 class="section-title">Программа тура</h2>
+        <p class="section-desc">3 дня / 2 ночи незабываемого отдыха.</p>
+
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span>День 1</span>
+                    <h3>Знакомство с городом</h3>
+                    <p>Встреча в аэропорту, заселение в отель 4*. Обзорная экскурсия по Краснодару, посещение Екатерининского собора. Ужин в лучшем ресторане кубанской кухни.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span>День 2</span>
+                    <h3>Винный тур и Парк Галицкого</h3>
+                    <p>Поездка на винодельню с дегустацией. Обед в винном шатре. Вечерняя прогулка по Парку Галицкого, посещение японского сада и концерт под открытым небом.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span>День 3</span>
+                    <h3>Казачья культура</h3>
+                    <p>Экскурсия в этно-комплекс "Атамань". Мастер-класс по гончарному делу, катание на лошадях. Прощальный обед и трансфер в аэропорт.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="price">
+        <h2 class="section-title">Стоимость</h2>
+        <p class="section-desc">Выберите подходящий формат отдыха.</p>
+
+        <div class="price-cards">
+            <div class="price-card">
+                <h3>Стандарт</h3>
+                <div class="price-amount">35 000 ₽</div>
+                <ul class="price-features">
+                    <li>Отель 3*</li>
+                    <li>Завтраки</li>
+                    <li>Групповые экскурсии</li>
+                    <li>Трансфер</li>
+                </ul>
+                <a href="#booking" class="btn-cta">Выбрать</a>
+            </div>
+            <div class="price-card featured">
+                <h3>Комфорт</h3>
+                <div class="price-amount">55 000 ₽</div>
+                <ul class="price-features">
+                    <li>Отель 4*</li>
+                    <li>Завтраки + Ужины</li>
+                    <li>Индивидуальный гид</li>
+                    <li>Дегустация вин</li>
+                </ul>
+                <a href="#booking" class="btn-cta">Выбрать</a>
+            </div>
+            <div class="price-card">
+                <h3>VIP</h3>
+                <div class="price-amount">90 000 ₽</div>
+                <ul class="price-features">
+                    <li>Отель 5*</li>
+                    <li>Все включено</li>
+                    <li>Персональный водитель</li>
+                    <li>Гастрономический тур</li>
+                </ul>
+                <a href="#booking" class="btn-cta">Выбрать</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking">
+        <h2 class="section-title">Форма заявки</h2>
+        <p class="section-desc">Оставьте заявку, и мы свяжемся с вами для подтверждения деталей.</p>
+
+        <div class="booking-container">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+                </div>
+                <div class="form-group">
+                    <label for="tariff">Выберите тариф</label>
+                    <select id="tariff">
+                        <option value="standard">Стандарт (35 000 ₽)</option>
+                        <option value="comfort">Комфорт (55 000 ₽)</option>
+                        <option value="vip">VIP (90 000 ₽)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Отправить заявку</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Южное Сияние</h4>
+                <p>Туристическое агентство, специализирующееся на отдыхе в Краснодарском крае. Мы делаем ваш отдых незабываемым с 2015 года.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p>📞 +7 (918) 452-77-13</p>
+                <p>📍 г. Краснодар, ул. Красная, д. 84, офис 312</p>
+                <p>✉️ info@yuzhnoe-siyanie.ru</p>
+            </div>
+            <div class="footer-col">
+                <h4>Режим работы</h4>
+                <p>Пн-Пт: 09:00 - 20:00</p>
+                <p>Сб: 10:00 - 18:00</p>
+                <p>Вс: Выходной</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2023 Туристическое агентство "Южное Сияние". Все права защищены.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('bookingForm');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const tariffSelect = document.getElementById('tariff');
+                const tariff = tariffSelect.options[tariffSelect.selectedIndex].text;
+
+                if (name.length < 2) {
+                    alert('Пожалуйста, введите ваше имя.');
+                    return;
+                }
+                if (phone.length < 6) {
+                    alert('Пожалуйста, введите корректный номер телефона.');
+                    return;
+                }
+
+                const button = form.querySelector('button[type="submit"]');
+                const originalText = button.innerText;
+
+                button.innerText = 'Отправка...';
+                button.disabled = true;
+
+                setTimeout(() => {
+                    alert(
+                        `Спасибо, ${name}!\n` +
+                        `Ваша заявка на тариф "${tariff}" принята.\n` +
+                        `Мы позвоним вам на номер ${phone} в ближайшее время.`
+                    );
+                    button.innerText = originalText;
+                    button.disabled = false;
+                    form.reset();
+                }, 1200);
+            });
+
+            // Плавное появление секций при прокрутке
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(40px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
