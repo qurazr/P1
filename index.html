@@ -1,460 +1,220 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тур в Краснодар | Южное Сияние</title>
 
-  <title>Краснодар — путешествие, которое запомнится</title>
+    <!-- Шрифты Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ШАПКА -->
-  <header class="topbar">
-    <a class="brand" href="#home">
-      ЮЖНОЕ ПУТЕШЕСТВИЕ
-    </a>
-
-    <button class="menu-button"
-            aria-expanded="false"
-            aria-label="Меню">
-      ☰
-    </button>
-
-    <nav id="nav">
-      <a href="#tour">ТУРЫ</a>
-      <a href="#route">МАРШРУТ</a>
-      <a href="#gallery">ОБРАЗЫ</a>
-      <a href="#booking">БРОНИРОВАТЬ</a>
+    <!-- Навигация -->
+    <nav>
+        <div class="logo">Южное <span>Сияние</span></div>
+        <ul class="nav-links">
+            <li><a href="#destinations">Направления</a></li>
+            <li><a href="#gallery">Фото</a></li>
+            <li><a href="#program">Программа</a></li>
+            <li><a href="#price">Стоимость</a></li>
+            <li><a href="#booking" class="btn-cta">Забронировать</a></li>
+        </ul>
     </nav>
-  </header>
 
-
-  <!-- ПЕРВЫЙ ЭКРАН -->
-  <main>
-
-    <section class="hero" id="home">
-
-      <div class="hero-image"></div>
-
-      <div class="hero-content">
-
-        <p class="overline">
-          ЮЖНЫЙ КРАЙ · РОССИЯ
-        </p>
-
-        <h1>КРАСНОДАР</h1>
-
-        <div class="hero-sidecopy">
-
-          <h2>
-            Путешествие,<br>
-            которое запомнится
-          </h2>
-
-          <p>
-            Откройте южный город<br>
-            в своём ритме — от парков<br>
-            до гастрономических открытий.
-          </p>
-
+    <!-- Hero -->
+    <header>
+        <div class="hero-content">
+            <h1>Откройте для себя Краснодар</h1>
+            <p>Уникальное путешествие в столицу Кубани. Винные туры, казачья культура, гастрономия и южное гостеприимство ждут вас.</p>
+            <a href="#booking" class="btn-cta">Забронировать тур</a>
         </div>
+    </header>
 
-        <a class="play-link"
-           href="#route"
-           aria-label="Посмотреть маршрут">
-          <span>▶</span>
-        </a>
+    <!-- Направления -->
+    <section id="destinations">
+        <h2 class="section-title">Направления</h2>
+        <p class="section-desc">Мы подготовили для вас самые интересные маршруты по Краснодарскому краю.</p>
 
-      </div>
-
-
-      <!-- ПАНЕЛЬ БРОНИРОВАНИЯ -->
-      <div class="booking-strip" id="booking">
-
-        <label>
-          ВЫБРАТЬ ДАТУ
-
-          <input type="date" id="tripDate">
-        </label>
-
-
-        <label>
-          ПОДОБРАТЬ ТУР
-
-          <select id="tourChoice">
-            <option>Краснодар — 3 дня</option>
-            <option>Краснодар выходного дня</option>
-            <option>Город + винодельни</option>
-          </select>
-        </label>
-
-
-        <label>
-          КОЛИЧЕСТВО ЛЮДЕЙ
-
-          <select id="people">
-            <option>1 человек</option>
-            <option selected>2 человека</option>
-            <option>3 человека</option>
-            <option>4 человека</option>
-            <option>5+ человек</option>
-          </select>
-        </label>
-
-
-        <a href="#application" class="book-button">
-          ЗАБРОНИРОВАТЬ ↗
-        </a>
-
-      </div>
-
+        <div class="destinations-grid">
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://images.unsplash.com/photo-1590433542250-8c57b4e0c1b6?q=80&w=800&auto=format&fit=crop" alt="Виноградники">
+                </div>
+                <div class="dest-info">
+                    <h3>Винные долины</h3>
+                    <p>Посетите лучшие винодельни Кубани, продегустируйте авторские вина и узнайте секреты виноделия.</p>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://images.unsplash.com/photo-1589135308024-403a285b4cf2?q=80&w=800&auto=format&fit=crop" alt="Парк Галицкого">
+                </div>
+                <div class="dest-info">
+                    <h3>Парк Галицкого</h3>
+                    <p>Один из лучших парков Европы. Уникальный ландшафтный дизайн, амфитеатр и японский сад.</p>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://images.unsplash.com/photo-1570126618953-d437176e8c79?q=80&w=800&auto=format&fit=crop" alt="Казачья станица">
+                </div>
+                <div class="dest-info">
+                    <h3>Казачья станица</h3>
+                    <p>Погружение в историю и быт кубанского казачества. Традиционная кухня и джигитовка.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Галерея -->
+    <section id="gallery">
+        <h2 class="section-title">Фотографии</h2>
+        <p class="section-desc">Яркие моменты, которые ждут вас в этом путешествии.</p>
 
-    <!-- БЛОК МАРШРУТА -->
-    <section class="route-feature" id="route">
-
-      <div class="route-photo"></div>
-
-      <div class="route-card">
-
-        <p class="overline dark">
-          ВАШЕ ПУТЕШЕСТВИЕ
-        </p>
-
-        <h2>
-          Создайте свой<br>
-          маршрут
-        </h2>
-
-        <p>
-          Вместе мы подберём путешествие с локациями,
-          прогулками и впечатлениями, которые интересны
-          именно вам.
-        </p>
-
-        <p>
-          От уютных улиц центра до масштабных парковых
-          пространств. У нас есть маршруты на любой вкус —
-          выберите свой юг.
-        </p>
-
-        <a href="#tour" class="inline-link">
-          УЗНАТЬ О ТУРАХ ↗
-        </a>
-
-      </div>
-
-      <div class="route-caption">
-        01 / ПАРКИ, АРХИТЕКТУРА, ВПЕЧАТЛЕНИЯ
-      </div>
-
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=800&auto=format&fit=crop" alt="Краснодар"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800&auto=format&fit=crop" alt="Вино"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop" alt="Природа"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Ресторан"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=80&w=800&auto=format&fit=crop" alt="Архитектура"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop" alt="Закат"></div>
+        </div>
     </section>
 
+    <!-- Программа -->
+    <section id="program">
+        <h2 class="section-title">Программа тура</h2>
+        <p class="section-desc">3 дня / 2 ночи незабываемого отдыха.</p>
 
-    <!-- ЦИФРЫ -->
-    <section class="numbers" id="tour">
-
-      <div class="number">
-        <strong>3</strong>
-        <span>ДНЯ ПУТЕШЕСТВИЯ</span>
-      </div>
-
-      <div class="number">
-        <strong>12+</strong>
-        <span>ЛОКАЦИЙ ДЛЯ ОТКРЫТИЙ</span>
-      </div>
-
-      <div class="number">
-        <strong>∞</strong>
-        <span>ЮЖНЫХ ВПЕЧАТЛЕНИЙ</span>
-      </div>
-
-      <div class="number">
-        <strong>24 900 ₽</strong>
-        <span>СТАРТОВАЯ СТОИМОСТЬ</span>
-      </div>
-
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span>День 1</span>
+                    <h3>Знакомство с городом</h3>
+                    <p>Встреча в аэропорту, заселение в отель 4*. Обзорная экскурсия по Краснодару, посещение Екатерининского собора. Ужин в лучшем ресторане кубанской кухни.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span>День 2</span>
+                    <h3>Винный тур и Парк Галицкого</h3>
+                    <p>Поездка на винодельню с дегустацией. Обед в винном шатре. Вечерняя прогулка по Парку Галицкого, посещение японского сада и концерт под открытым небом.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span>День 3</span>
+                    <h3>Казачья культура</h3>
+                    <p>Экскурсия в этно-комплекс "Атамань". Мастер-класс по гончарному делу, катание на лошадях. Прощальный обед и трансфер в аэропорт.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Стоимость -->
+    <section id="price">
+        <h2 class="section-title">Стоимость</h2>
+        <p class="section-desc">Выберите подходящий формат отдыха.</p>
 
-    <!-- ФОТОГАЛЕРЕЯ -->
-    <section class="gallery-section" id="gallery">
-
-      <div class="gallery-heading">
-
-        <p class="overline dark">
-          МЕСТА, КОТОРЫЕ СТОИТ УВИДЕТЬ
-        </p>
-
-        <h2>Краснодар — в деталях</h2>
-
-      </div>
-
-
-      <div class="gallery">
-
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85"
-            alt="Зелёный парк и природный ландшафт">
-
-          <figcaption>
-            01 / ПАРК ГАЛИЦКОГО
-          </figcaption>
-        </figure>
-
-
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1000&q=85"
-            alt="Городская архитектура">
-
-          <figcaption>
-            02 / ГОРОДСКИЕ УЛИЦЫ
-          </figcaption>
-        </figure>
-
-
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=1000&q=85"
-            alt="Виноградники и южные пейзажи">
-
-          <figcaption>
-            03 / ВКУС ЮГА
-          </figcaption>
-        </figure>
-
-      </div>
-
+        <div class="price-cards">
+            <div class="price-card">
+                <h3>Стандарт</h3>
+                <div class="price-amount">35 000 ₽</div>
+                <ul class="price-features">
+                    <li>Отель 3*</li>
+                    <li>Завтраки</li>
+                    <li>Групповые экскурсии</li>
+                    <li>Трансфер</li>
+                </ul>
+                <a href="#booking" class="btn-cta">Выбрать</a>
+            </div>
+            <div class="price-card featured">
+                <h3>Комфорт</h3>
+                <div class="price-amount">55 000 ₽</div>
+                <ul class="price-features">
+                    <li>Отель 4*</li>
+                    <li>Завтраки + Ужины</li>
+                    <li>Индивидуальный гид</li>
+                    <li>Дегустация вин</li>
+                </ul>
+                <a href="#booking" class="btn-cta">Выбрать</a>
+            </div>
+            <div class="price-card">
+                <h3>VIP</h3>
+                <div class="price-amount">90 000 ₽</div>
+                <ul class="price-features">
+                    <li>Отель 5*</li>
+                    <li>Все включено</li>
+                    <li>Персональный водитель</li>
+                    <li>Гастрономический тур</li>
+                </ul>
+                <a href="#booking" class="btn-cta">Выбрать</a>
+            </div>
+        </div>
     </section>
 
+    <!-- Форма -->
+    <section id="booking">
+        <h2 class="section-title">Форма заявки</h2>
+        <p class="section-desc">Оставьте заявку, и мы свяжемся с вами для подтверждения деталей.</p>
 
-    <!-- ПРОГРАММА ТУРА -->
-    <section class="itinerary">
-
-      <div class="itinerary-title">
-
-        <p class="overline">
-          ПЛАН ПУТЕШЕСТВИЯ
-        </p>
-
-        <h2>
-          Три дня<br>
-          на юге
-        </h2>
-
-      </div>
-
-
-      <div class="itinerary-items">
-
-        <article>
-
-          <span>ДЕНЬ 01</span>
-
-          <h3>Знакомство с Краснодаром</h3>
-
-          <p>
-            Исторический центр, прогулочные улицы,
-            архитектура, местные кафе и первые впечатления.
-          </p>
-
-        </article>
-
-
-        <article>
-
-          <span>ДЕНЬ 02</span>
-
-          <h3>Парк и пространства</h3>
-
-          <p>
-            Парк Галицкого, ландшафтные композиции,
-            необычные арт-объекты и время для фотографий.
-          </p>
-
-        </article>
-
-
-        <article>
-
-          <span>ДЕНЬ 03</span>
-
-          <h3>Вкусы и открытия</h3>
-
-          <p>
-            Южная кухня, небольшие локальные места,
-            сувениры и свободное время перед отъездом.
-          </p>
-
-        </article>
-
-      </div>
-
+        <div class="booking-container">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+                </div>
+                <div class="form-group">
+                    <label for="tariff">Выберите тариф</label>
+                    <select id="tariff">
+                        <option value="standard">Стандарт (35 000 ₽)</option>
+                        <option value="comfort">Комфорт (55 000 ₽)</option>
+                        <option value="vip">VIP (90 000 ₽)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Отправить заявку</button>
+                </div>
+            </form>
+        </div>
     </section>
 
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Южное Сияние</h4>
+                <p>Туристическое агентство, специализирующееся на отдыхе в Краснодарском крае. Мы делаем ваш отдых незабываемым с 2015 года.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p>📞 +7 (918) 452-77-13</p>
+                <p>📍 г. Краснодар, ул. Красная, д. 84, офис 312</p>
+                <p>✉️ info@yuzhnoe-siyanie.ru</p>
+            </div>
+            <div class="footer-col">
+                <h4>Режим работы</h4>
+                <p>Пн-Пт: 09:00 - 20:00</p>
+                <p>Сб: 10:00 - 18:00</p>
+                <p>Вс: Выходной</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2023 Туристическое агентство "Южное Сияние". Все права защищены.
+        </div>
+    </footer>
 
-    <!-- СТОИМОСТЬ -->
-    <section class="price-section">
-
-      <p class="overline dark">
-        СТОИМОСТЬ ПУТЕШЕСТВИЯ
-      </p>
-
-      <h2>Выберите свой формат</h2>
-
-
-      <div class="price-grid">
-
-        <article>
-
-          <span>ЛАЙТ</span>
-
-          <h3>24 900 ₽</h3>
-
-          <p>
-            Программа, экскурсии, сопровождение
-            и трансферы по маршруту.
-          </p>
-
-          <a href="#application">
-            ОСТАВИТЬ ЗАЯВКУ ↗
-          </a>
-
-        </article>
-
-
-        <article class="price-featured">
-
-          <span>КОМФОРТ</span>
-
-          <h3>34 900 ₽</h3>
-
-          <p>
-            Программа, проживание на 2 ночи,
-            завтраки, экскурсии и сопровождение.
-          </p>
-
-          <a href="#application">
-            ОСТАВИТЬ ЗАЯВКУ ↗
-          </a>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ФОРМА ЗАЯВКИ -->
-    <section class="application" id="application">
-
-      <div>
-
-        <p class="overline dark">
-          ПЛАНИРУЕМ ВАШ ЮГ
-        </p>
-
-        <h2>
-          Путешествие<br>
-          начинается здесь.
-        </h2>
-
-        <p class="form-intro">
-          Оставьте контакты — мы свяжемся с вами
-          и поможем выбрать даты и маршрут.
-        </p>
-
-      </div>
-
-
-      <form id="applicationForm">
-
-        <label>
-          ИМЯ
-
-          <input
-            name="name"
-            placeholder="Ваше имя"
-            required>
-        </label>
-
-
-        <label>
-          ТЕЛЕФОН
-
-          <input
-            name="phone"
-            type="tel"
-            placeholder="+7 (___) ___-__-__"
-            required>
-        </label>
-
-
-        <label>
-          ДАТА ПОЕЗДКИ
-
-          <input
-            name="date"
-            type="date">
-        </label>
-
-
-        <label>
-          ПОЖЕЛАНИЯ
-
-          <textarea
-            name="comment"
-            rows="3"
-            placeholder="Расскажите, что хотели бы увидеть">
-          </textarea>
-        </label>
-
-
-        <button type="submit">
-          ОТПРАВИТЬ ЗАЯВКУ ↗
-        </button>
-
-
-        <p class="form-message" id="formMessage"></p>
-
-      </form>
-
-    </section>
-
-  </main>
-
-
-  <!-- ПОДВАЛ -->
-  <footer>
-
-    <div class="footer-brand">
-      ЮЖНОЕ ПУТЕШЕСТВИЕ
-    </div>
-
-    <div>
-      +7 (918) 456-27-39<br>
-      Краснодар, ул. Красная, 85
-    </div>
-
-    <div>
-      © 2026 · ДЕМО САЙТ
-    </div>
-
-  </footer>
-
-
-  <!-- ПОДКЛЮЧЕНИЕ JS -->
-  <script src="script.js"></script>
-
+    <!-- Подключение JS -->
+    <script src="script.js"></script>
 </body>
-  </html>
+                      </html>
